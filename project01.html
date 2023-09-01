@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do App IDX:01</title>
+    <script src="js/DateTime.js" defer></script>
+    <script src="js/TasksUI.js" defer></script>
+    <script src="js/TasksManager.js" defer></script>
+    <script src="js/script.js" defer></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+    <button id="addTaskButton" class="add">+</button>
+    <button id="exportTasks" class="add">=&gt;</button>
+    <header>
+        <div class="wrapper">
+            <h1 id="dateEl">Current Date</h1>
+            <h2 id="tasksCountLabel">0 incomplete, 0 complete</h2>   
+        </div>
+    </header>
+
+    <section class="incomplete-sec list">
+        <div class="wrapper">
+            <h1 class="type">incomplete</h1>
+            <ul id="uncompletedTasks"><p>No tasks saved.</p></ul>
+        </div>
+    </section>
+
+    <section class="complete-sec list">
+        <div class="wrapper">
+            <h1 class="type">completed</h1>
+            <ul id="completedTasks"><p>No tasks saved.</p></ul>
+        </div>
+    </section>
+    <section id="modalBG" class="modalBG"></section>
+    <section id="modalAddTask" class="modal-addTask">
+        <h2>Add New Task</h2>
+        <label for="">Task Name: </label><input type="text" id="taskNameEl" required maxlength="40">
+        <label for="">Task Type: </label><input type="text" id="taskTypeEl" required maxlength="12">
+        <button id="addTaskConfirmButton" class="modalBtn">Add Task</button>
+    </section>
+    <section id="modalEditTask" class="modal-addTask">
+        <h2>Edit Task</h2>
+        <label for="">Task Name: </label><input type="text" id="editModal_taskNameEl" required maxlength="40">
+        <label for="">Task Type: </label><input type="text" id="editModal_taskTypeEl" required maxlength="12">
+        <button id="saveTaskButton" class="modalBtn">Save Task</button>
+    </section>
+</body>
+</html>
