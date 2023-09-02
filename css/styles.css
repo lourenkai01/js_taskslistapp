@@ -47,8 +47,8 @@ body {
     right: 65px;
     bottom: 10px;
 
-    background-color: purple;
-    border: 1px solid purple;
+    background-color: #329dfa;
+    border: 1px solid #50a9f7;
 }
 
 #addTaskButton:hover {
@@ -60,8 +60,8 @@ body {
     right: 65px;
     bottom: 10px;
 
-    background-color: purple;
-    border: 1px solid purple;
+    background-color: #329dfa;
+    border: 1px solid #50a9f7;
 }
 
 #downloadTasks:hover {
@@ -180,6 +180,7 @@ input[type=checkbox] {
 }
 
 .complete-sec li {
+
     font-size: 0.8em;
 }
 
@@ -197,7 +198,7 @@ input[type=checkbox] {
     transform: translate(-50%, -50%);
 
     width: 500px;
-    height: 300px;
+    height: 380px;
 
     padding: 25px;
     border: 2px solid #1e7fd4;

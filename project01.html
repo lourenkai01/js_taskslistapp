@@ -40,12 +40,14 @@
         <h2>Add New Task</h2>
         <label for="">Task Name: </label><input type="text" id="taskNameEl" required maxlength="40">
         <label for="">Task Type: </label><input type="text" id="taskTypeEl" required maxlength="12">
+        <label for="">Task Overdue Date:</label><input type="datetime-local" id="taskOverdueEl" required>
         <button id="addTaskConfirmButton" class="modalBtn">Add Task</button>
     </section>
     <section id="modalEditTask" class="modal-addTask">
         <h2>Edit Task</h2>
         <label for="">Task Name: </label><input type="text" id="editModal_taskNameEl" required maxlength="40">
         <label for="">Task Type: </label><input type="text" id="editModal_taskTypeEl" required maxlength="12">
+        <label for="">Task Overdue Date:</label><input type="datetime-local" id="editModal_taskOverdueEl" required>
         <button id="saveTaskButton" class="modalBtn">Save Task</button>
     </section>
 </body>

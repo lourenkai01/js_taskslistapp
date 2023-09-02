@@ -25,10 +25,8 @@ class TasksUI {
 
         this.saveTaskButton.addEventListener('click', () => this.taskManager.saveTask());
         this.addTaskConfirmButton.addEventListener('click', () => this.taskManager.addTask());
-        this.addTaskButton.addEventListener('click', () => {
-            this.openModal("addTask");
-            console.log("triggering");
-        });
+        this.addTaskButton.addEventListener('click', () => this.openModal("addTask"));
+        this.exportTaskButton.addEventListener('click', () => this.taskManager.exportTasks());
     }
 
     addTask() {
@@ -69,7 +67,10 @@ class TasksUI {
             this.taskManager.uncompletedTasks.forEach((task) => {
     
             const taskElement = document.createElement("li");
-            taskElement.innerHTML = `<div class="top"><input type="checkbox" taskID="${task.taskID}"><h1>${task.taskName}</h1><i class="fa fa-pencil fa-lg"></i><i class="fa fa-ban fa-lg"></i></div><div class="bottom"><img src="img/project.png" alt="icon"><p>${task.taskType}</p></div>`;
+            taskElement.innerHTML = `<div class="top"><input type="checkbox" taskID="${task.taskID}">`
+            + `<h1>${task.taskName}</h1><i class="fa fa-pencil fa-lg"></i><i class="fa fa-ban fa-lg">` + 
+            `</i></div><div class="bottom"><img src="img/project.png" alt="icon"><p>${task.taskType}</p>` + 
+            `<p>, overdues on ${task.taskOverdue}</p></div>`;
             
             taskElement.childNodes[0].childNodes[3].addEventListener('click', () => {
     
@@ -81,8 +82,6 @@ class TasksUI {
     
                 this.taskManager.editTask(task.taskID);
             });
-    
-            console.log(task);
 
             task.taskElement = taskElement;
             task.taskCompleted = false;
@@ -93,7 +92,9 @@ class TasksUI {
         this.taskManager.completedTasks.forEach((task) => {
 
                 const taskElement = document.createElement("li");
-                taskElement.innerHTML = `<input type="checkbox" taskID="${task.taskID}" checked="true">${task.taskName}`;
+                taskElement.innerHTML = `<input type="checkbox" taskID="${task.taskID}" checked="true">${task.taskName}` + 
+                    `, completed on ${task.taskCompleteDate}`;
+
                 task.taskElement = taskElement;
                 this.tasksElement.appendChild(task.taskElement);
         });
@@ -150,5 +151,4 @@ class TasksUI {
                 break;
         }
     }
-    
 }
