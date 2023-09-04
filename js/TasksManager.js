@@ -3,8 +3,10 @@ class TasksManager {
     constructor() {
         
         this.tasks = [];
+        this.taskLists = [];
         this.ui = new TasksUI(this);
         this.refreshRate = 1000;
+        this.selectedList = 'default';
     }
 
     loadTasks() {
@@ -27,15 +29,46 @@ class TasksManager {
                 taskDeleted: taskData[4] === "true",
                 taskOverdue: taskData[5],
                 taskCompleteDate: taskData[6],
+                taskList: 'default',
                 taskElement: null
             };
 
             this.tasks.push(taskObject);
         });
-
-
-
     };
+
+    loadLists() {
+
+        const listsData = localStorage.getItem('listsData');
+
+        var tempLists = (listsData === null) ? [] : listsData.split('\n');
+        tempLists.pop();
+        tempLists.shift();
+
+        tempLists.forEach(list => {
+
+            const  listData = list.split(',');
+
+            const listObject = {
+                
+                listID: listData[0],
+                listName: listData[1]
+            };
+
+            this.taskLists.push(listObject);
+        });
+
+
+        this.ui.loadTaskLists();
+    }
+
+    onListChanged() {
+
+        const listDropElement = document.querySelector('#taskList');
+        this.selectedList = listDropElement.options[listDropElement.selectedIndex].text;
+
+        this.updateTasks();
+    }
 
     saveTasks() {
         
@@ -97,6 +130,7 @@ class TasksManager {
             taskDeleted: false,
             taskOverdue: taskOverdueValue,
             taskCompleteDate: 'null',
+            taskList: 'default',
             taskElement: null
         };
         
@@ -104,6 +138,28 @@ class TasksManager {
 
         this.ui.addTask();
         this.updateTasks();
+    }
+
+    addList() {
+
+        const listName = document.querySelector('#addListModal_listName').value;
+
+        if(listName == "" || listName === null)
+        {
+            this.ui.closeModal("addList");
+            return;
+        }
+
+        const list = {
+
+            listID: this.taskLists.length.toString(),
+            "listName": listName
+        };
+
+        this.taskLists.push(list);
+        this.ui.closeModal("addList");
+
+        this.saveLists();
     }
 
     deleteTasks() {
@@ -116,11 +172,15 @@ class TasksManager {
         this.ui.deleteTasks();
 
         this.completedTasks = this.tasks.filter(task => {
-            return task.taskCompleted === true && !task.taskDeleted;
+            return task.taskCompleted === true && !task.taskDeleted && task.taskList == this.selectedList;
         });
 
         this.uncompletedTasks = this.tasks.filter(task => {
-            return task.taskCompleted !== true && !task.taskDeleted;
+            return task.taskCompleted !== true && !task.taskDeleted && task.taskList == this.selectedList;
+        });
+
+        this.currentLists = this.taskLists.filter(list => {
+            return true;
         });
 
         this.ui.updateTasksUI();
@@ -196,5 +256,21 @@ class TasksManager {
 
         this.ui.closeModal("editTask");
         this.updateTasks();
+    }
+
+    saveLists() {
+    
+        const headers = "listID,listName\n";
+        var body = "";
+
+        this.taskLists.forEach(list => {
+
+            body += list.listID + "," + list.listName + "\n";
+        });
+
+        const listsData = headers + body;
+        localStorage.setItem('listsData', listsData);
+
+        return listsData;
     }
 }

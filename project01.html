@@ -8,47 +8,69 @@
     <script src="js/TasksUI.js" defer></script>
     <script src="js/TasksManager.js" defer></script>
     <script src="js/script.js" defer></script>
+    
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
-    <button id="addTaskButton" class="add">+</button>
-    <button id="exportTasks" class="add">=&gt;</button>
+    <!--<button id="addTaskButton" class="add">+</button>
+    <button id="exportTasks" class="add">=&gt;</button>-->
     <header>
         <div class="wrapper">
-            <h1 id="dateEl">Current Date</h1>
-            <h2 id="tasksCountLabel">0 incomplete, 0 complete</h2>   
+            <div class="title">
+                <h1>Tasks App</h1>
+                <i id="addMenuButton" class="fa fa-bars fa-lg"></i>
+                <div id="addMenu" class="floating-menu">
+                    <ul>
+                        <li id="addTaskButton"><i class="fa fa-tasks fa-lg"></i>add task</li>
+                        <li id="addListButton"><i class="fa fa-list-alt fa-lg"></i>add list</li>
+                        <li><i class="fa fa-object-group fa-lg"></i>add group</li>
+                        <li id="exportTasks"><i class="fa fa-download fa-lg"></i>export CSV</li>
+                    </ul>
+                </div>
+            </div>
+            <h2 id="dateEl">Current Date</h2>
+            <h3 id="tasksCountLabel">0 incomplete, 0 complete</h3>   
         </div>
     </header>
 
-    <section class="incomplete-sec list">
-        <div class="wrapper">
-            <h1 class="type">incomplete</h1>
-            <ul id="uncompletedTasks"><p>No tasks saved.</p></ul>
-        </div>
-    </section>
-
-    <section class="complete-sec list">
-        <div class="wrapper">
-            <h1 class="type">completed</h1>
-            <ul id="completedTasks"><p>No tasks saved.</p></ul>
-        </div>
-    </section>
-    <section id="modalBG" class="modalBG"></section>
-    <section id="modalAddTask" class="modal-addTask">
-        <h2>Add New Task</h2>
-        <label for="">Task Name: </label><input type="text" id="taskNameEl" required maxlength="40">
-        <label for="">Task Type: </label><input type="text" id="taskTypeEl" required maxlength="12">
-        <label for="">Task Overdue Date:</label><input type="datetime-local" id="taskOverdueEl" required>
-        <button id="addTaskConfirmButton" class="modalBtn">Add Task</button>
-    </section>
-    <section id="modalEditTask" class="modal-addTask">
-        <h2>Edit Task</h2>
-        <label for="">Task Name: </label><input type="text" id="editModal_taskNameEl" required maxlength="40">
-        <label for="">Task Type: </label><input type="text" id="editModal_taskTypeEl" required maxlength="12">
-        <label for="">Task Overdue Date:</label><input type="datetime-local" id="editModal_taskOverdueEl" required>
-        <button id="saveTaskButton" class="modalBtn">Save Task</button>
-    </section>
+    <div class="wrapper">
+        <section class="incomplete-sec list">
+            <div class="wrapper">
+                <h1 class="type">incomplete</h1>
+                <label for="taskList">Lista: </label>
+                <select id="taskList"></select>
+                <ul id="uncompletedTasks"><p>No tasks saved.</p></ul>
+            </div>
+        </section>
+    
+        <section class="complete-sec list">
+            <div class="wrapper">
+                <h1 class="type">completed</h1> 
+                <ul id="completedTasks"><p>No tasks saved.</p></ul>
+            </div>
+        </section>
+        <section id="modalBG" class="modalBG"></section>
+        <section id="modalAddTask" class="modal">
+            <h2>Add New Task</h2>
+            <label for="">Task Name: </label><input type="text" id="taskNameEl" required maxlength="40">
+            <label for="">Task Type: </label><input type="text" id="taskTypeEl" required maxlength="12">
+            <label for="">Task Overdue Date:</label><input type="datetime-local" id="taskOverdueEl" required>
+            <button id="addTaskConfirmButton" class="modalBtn">Add Task</button>
+        </section>
+        <section id="modalEditTask" class="modal">
+            <h2>Edit Task</h2>
+            <label for="">Task Name: </label><input type="text" id="editModal_taskNameEl" required maxlength="40">
+            <label for="">Task Type: </label><input type="text" id="editModal_taskTypeEl" required maxlength="12">
+            <label for="">Task Overdue Date:</label><input type="datetime-local" id="editModal_taskOverdueEl" required>
+            <button id="saveTaskButton" class="modalBtn">Save Task</button>
+        </section>
+        <section id="modalAddList" class="modal">
+            <h2>Add New List</h2>
+            <label for="">List Name: </label><input type="text" id="addListModal_listName" required maxlength="40">
+            <button id="addListConfirmButton" class="modalBtn">Add List</button>
+        </section>
+    </div>
 </body>
 </html>

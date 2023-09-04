@@ -16,6 +16,12 @@ body {
     padding-left: 12px;
 }
 
+.wrapper:first-child{
+
+    
+    margin: auto 10px;
+}
+
 .app {
     margin: auto;
 }
@@ -43,17 +49,47 @@ body {
     background-color: #1e7fd4;
 }
 
-#addTaskButton {
-    right: 65px;
-    bottom: 10px;
+.floating-menu {
 
-    background-color: #329dfa;
-    border: 1px solid #50a9f7;
+    display: none;
+
+    width: 140px;
+    padding: 5px;
+
+    top: 35px;
+    right: 0px;
+    position: absolute;
+
+    background-color: #202020;
+    border-radius: 6px 0px 6px 6px;
 }
 
-#addTaskButton:hover {
-    background-color: rgb(85, 11, 85);
+.floating-menu ul {
+    
+    list-style-type: none;
 }
+
+.floating-menu li {
+
+    font-size: 0.85em;
+    padding: 10px;
+    cursor: pointer;
+
+    border-radius: 6px 0px 6px 6px;
+}
+
+.floating-menu li:hover {
+
+    cursor: pointer;
+    background-color: black;
+}
+
+.floating-menu li i {
+
+    margin-right: 6px;
+}
+
+.floating-menu li 
 
 
 #downloadTasks {
@@ -85,16 +121,41 @@ header .wrapper {
     height: 80px;
 }
 
+header .title {
+
+    display: flex;
+    
+    align-items: center;
+    justify-content: space-between;
+
+    position: relative;
+}
+
 header h1 {
 
-    font-size: 1.8em;
+    padding-bottom: 15px;
+    font-size: 1.1em;
+}
+
+header i {
+
+    position: relative;
+}
+
+header i:hover {
+
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.733);
 }
 
 header h2 {
-    font-size: 0.9em;
+
+    font-size: 1.0em;
 }
 
-
+header h3 {
+    font-size: 0.9em;
+}
 
 .list .wrapper>h1 {
 
@@ -125,7 +186,7 @@ header h2 {
     color: whitesmoke;
     padding-left: 5px;
 
-    width: 80%;
+    width: 100%;
 }
 
 .incomplete-sec ul li .top button {
@@ -188,7 +249,7 @@ input[type=checkbox] {
     padding-right: 15px;
 }
 
-.modal-addTask {
+.modal {
 
     display: none;
 
@@ -206,7 +267,7 @@ input[type=checkbox] {
     background-color: #202020;
 }
 
-.modal-addTask h2 {
+.modal h2 {
 
     text-transform: uppercase;
     text-align: center;
@@ -215,7 +276,7 @@ input[type=checkbox] {
     padding-bottom: 20px;
 }
 
-.modal-addTask label {
+.modal label {
 
     text-transform: capitalize;
     font-size: 0.9em;
@@ -224,7 +285,7 @@ input[type=checkbox] {
     padding: 8px 5px;
 }
 
-.modal-addTask input {
+.modal input {
 
     border-radius: 4px;
     color: whitesmoke;
@@ -267,4 +328,19 @@ input[type=checkbox] {
     display: none;
 
     background: rgba(0, 0, 0, 0.4);
+}
+
+#modalAddList {
+
+    height: auto;
+}
+
+select  {
+    width: 250px;
+    padding-left: 6px;
+    color: whitesmoke;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: #303030;
 }

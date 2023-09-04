@@ -14,9 +14,16 @@ class TasksUI {
 
         this.modalBG = document.querySelector('#modalBG');
         this.modalAddTask = document.querySelector('#modalAddTask');
+        this.modalAddList = document.querySelector('#modalAddList');
         this.modalEditTask = document.querySelector('#modalEditTask');
 
+        this.listsElement = document.querySelector('#taskList');
+        this.addMenuElement = document.querySelector('#addMenu');
         this.saveTaskButton = document.querySelector('#saveTaskButton');
+        this.optionsMenuButton = document.querySelector('#addMenuButton');
+        this.optionsMenuElement = document.querySelector('#addMenu');
+        this.addListButton = document.querySelector('#addListButton');
+        this.addListConfirmButton = document.querySelector('#addListConfirmButton');
 
         this.setupEvents();
     }
@@ -27,6 +34,32 @@ class TasksUI {
         this.addTaskConfirmButton.addEventListener('click', () => this.taskManager.addTask());
         this.addTaskButton.addEventListener('click', () => this.openModal("addTask"));
         this.exportTaskButton.addEventListener('click', () => this.taskManager.exportTasks());
+        this.optionsMenuButton.addEventListener('click', () => this.toggleOptionsMenu());
+        this.addListButton.addEventListener('click', () => this.openModal("addList"));
+        this.addListConfirmButton.addEventListener('click', () => this.taskManager.addList());
+        this.listsElement.addEventListener('change', () => this.taskManager.onListChanged());
+    }
+
+    loadTaskLists() {
+
+        this.taskManager.taskLists.forEach(list => {
+
+            const option = document.createElement('option');
+            option.value = list.listName;
+            option.innerText = list.listName;
+
+            this.listsElement.appendChild(option);
+        });
+    }
+
+    toggleOptionsMenu() {
+
+        if(this.optionsMenuElement.style.display === 'none') {
+            this.optionsMenuElement.style.display = 'block';
+        }
+        else {
+            this.optionsMenuElement.style.display = 'none';
+        }
     }
 
     addTask() {
@@ -117,7 +150,7 @@ class TasksUI {
 
     openModal(modalName) {
 
-        console.log("Opening...");
+        this.toggleOptionsMenu();
         switch(modalName) {
     
             case "addTask":
@@ -130,6 +163,11 @@ class TasksUI {
                 this.modalAddTask.style.display="none";
                 this.modalBG.style.display="block";
                 this.modalEditTask.style.display="block";  
+                break;
+
+            case "addList":
+                this.modalAddList.style.display="block";
+                this.modalBG.style.display="block";
                 break;
         }
     }
@@ -148,6 +186,11 @@ class TasksUI {
                 this.addTaskButton.style.display="block";
                 this.modalBG.style.display="none";
                 this.modalEditTask.style.display="none";
+                break;
+
+            case "addList":
+                this.modalAddList.style.display="none";
+                this.modalBG.style.display="none";
                 break;
         }
     }

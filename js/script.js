@@ -1,4 +1,5 @@
-const tasksManager = new TasksManager();
+const taskManager = new TasksManager();
 
-tasksManager.loadTasks();
-tasksManager.updateTasks();
+taskManager.loadTasks();
+taskManager.loadLists();
+taskManager.updateTasks();
